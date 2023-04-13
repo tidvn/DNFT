@@ -25,7 +25,7 @@ export default function mNFT() {
     Credit: false
   });
   const [metadata, setMetadata] = useState({});
-  const [credit, setCredit] = useState({MintBy:"DNFT"});
+  const [credit, setCredit] = useState({MintedBy:"www.tdung.tech"});
   const [price, setPrice] = useState(0);
 
   const [groups, setGroups] = useState([]);
@@ -60,10 +60,10 @@ export default function mNFT() {
       if (e.target.checked){
         setPrice(10000000)
         setCredit({})
-        // setMetadata(Object.fromEntries(Object.entries(metadata).filter(([key]) => key !== 'MintBy')))
+        // setMetadata(Object.fromEntries(Object.entries(metadata).filter(([key]) => key !== 'MintedBy')))
       }else{
         setPrice(0)
-        setCredit({MintBy:"DNFT"})
+        setCredit({MintedBy:"www.tdung.tech"})
       }
     }
     else{
