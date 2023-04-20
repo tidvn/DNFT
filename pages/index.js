@@ -89,7 +89,7 @@ export default function mNFT() {
       const asset = {
         assetName: formdata.assetName,
         assetQuantity: "1",
-        metadata: {...metadata,image:pinned.data.IpfsHash,mediaType: formdata.file.type,...credit},
+        metadata: {...metadata,image:`ipfs://${pinned.data.IpfsHash}`,mediaType: formdata.file.type,...credit},
         label: "721",
         recipient: {
           address: recipientAddress,
@@ -178,7 +178,7 @@ export default function mNFT() {
                 <span className="bg-transparent" >Remove "MintedBy:..." in metadata</span> 
                 <input type="checkbox" name="Credit" onChange={handleChange} className="toggle toggle-success"  checked={formdata.Credit} />
               </label>
-              {price > 0 && (<button disabled className="bg-transparent mx-5">cost {price/1000000} ADA</button>)}
+              {price > 0 && (<button disabled className="bg-transparent mx-5">cost: {price/1000000} ADA</button>)}
                   
               </div>
             </div>
