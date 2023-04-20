@@ -159,7 +159,7 @@ export default function mNFT() {
                 <input  type="text" name="assetName"  onChange={handleChange} value={formdata.assetName} placeholder="Asset Name"  className="input input-bordered input-success w-full" />
                 
                 
-                <label className="label-text">Note: The name nft is used to distinguish it from other NFTs. Therefore, you are not set to be the same as another NFT.</label>
+                <label className="label-text">The NFT name is used to distinguish it from other NFTs. Therefore, you should not set this name the same as others</label>
 
               </div>
                {/* html */}
