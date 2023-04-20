@@ -5,6 +5,7 @@ import {
   ForgeScript,
   Transaction,
 } from "@meshsdk/core";
+import Link from "next/link";
 const GroupInput = ({ id, MDName, MDValue, onChange, onRemove }) => {
   return (
     <div className="col-span-6 lg:col-span-8">
@@ -32,7 +33,7 @@ export default function mNFT() {
   const [metadata, setMetadata] = useState({});
   const [credit, setCredit] = useState({MintedBy:process.env.AUTHOR});
   const [price, setPrice] = useState(0);
-
+  const [network, setNetwork] = useState("");
   const [groups, setGroups] = useState([{id: '1', MDName: 'name', MDValue: ''},{id: '2', MDName: 'description', MDValue: ''}]);
 
   const handleAddGroup = useCallback(() => {
@@ -101,6 +102,7 @@ export default function mNFT() {
         if (address.indexOf('addr1')!=-1){
           bankWalletAddress = process.env.MAINNET_ADDR
         }else if(address.indexOf('addr_test1')!=-1){
+          setNetwork("preprod.")
           bankWalletAddress = process.env.PREPROD_ADDR
         }else{
           return
@@ -223,15 +225,15 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
               <CardanoWallet />
             )}
             {txHash && (
-              <div>
+              <div className="mt-5 text-center">
                 <p>Successful, transaction hash:</p>
-                <code>{txHash}</code>
+                <Link href={`https://${network}cardanoscan.io/transaction/${txHash}`}>{txHash}</Link>
               </div>
             )}
             </div>
+
+              
             </div>
-            
-            
             </div>
             </div>
             </div>
@@ -249,6 +251,7 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
             }}
           />
         </div>
+        
       </div>
     </>
   );
