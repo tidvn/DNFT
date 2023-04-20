@@ -16,12 +16,10 @@ export async function post(route, body = {}) {
     });
 }
 
-export async function createTransactionMainnet( utxos,asset,price) {
-  return await post(`create-mining-transaction-mainnet`, {utxos, asset,price });
+export async function createTransaction( utxos,asset,price) {
+  return await post(`create-mining-transaction`, {utxos, asset,price });
 }
-export async function createTransactionPreprod( utxos,asset,price) {
-  return await post(`create-mining-transaction-preprod`, {utxos, asset,price });
-}
+
 export async function signTransaction(signedTx, originalMetadata) {
   return await post(`sign-transaction`, {
     signedTx,
@@ -48,8 +46,8 @@ export async function UpToIPFS(file) {
         maxBodyLength: "Infinity",
         headers: {
           'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-          pinata_api_key: '1acfb70a66acadebb502',
-          pinata_secret_api_key: '12dfc3782fd24a25eeead27e8fa559b66416c63ff0e852d476b5802fee3bb924',
+          pinata_api_key: process.env.PINATA_API_KEY,
+          pinata_secret_api_key:  process.env.PINATA_SECRET_API_KEY,
         }
       });
     return res

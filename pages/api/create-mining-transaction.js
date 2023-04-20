@@ -5,13 +5,23 @@ import {
   KoiosProvider,
   largestFirst,
 } from "@meshsdk/core";
-import {demoMnemonic,bankWalletAddress} from "../../config/wallet";
+import {demoMnemonic} from "../../config/wallet";
 
 
 export default async function handler(req, res) {
+  var bankWalletAddress= ""
   const utxos = req.body.utxos;
-  const asset = req.body.asset;
-  const costLovelace = `${req.body.price+969750}`;
+  const asset = req.body.asset;                                           
+  const address = asset.recipient.address
+  if (address.indexOf('addr1')!=-1){
+    bankWalletAddress = process.env.MAINNET_ADDR
+  }else if(address.indexOf('addr_test1')!=-1){
+    bankWalletAddress = process.env.PREPROD_ADDR
+  }else{
+    return
+  }
+  const price = req.body.price
+  const costLovelace = `${price+969750}`;
   const blockchainProvider = new KoiosProvider("preview");
   const appWallet = new AppWallet({
     networkId: 0,
@@ -25,17 +35,14 @@ export default async function handler(req, res) {
 
   const appWalletAddress = appWallet.getPaymentAddress();
   const forgingScript = ForgeScript.withOneSignature(appWalletAddress);
-
-  /**
-   * TODO: Here you want to select one of your NFT that has not been minted
-   */
   const selectedUtxos = largestFirst(costLovelace, utxos, false);
-
   const tx = new Transaction({ initiator: appWallet });
   tx.setTxInputs(selectedUtxos);
   tx.mintAsset(forgingScript, asset);
-  tx.sendLovelace(process.env.MAINNET_ADDR, costLovelace);
-  tx.setChangeAddress(asset.recipient.address);
+  if(req.body.price >0 ){
+    tx.sendLovelace(bankWalletAddress, `${price }`);
+  }
+  tx.setChangeAddress(address);
   const unsignedTx = await tx.build();
 
   const originalMetadata = Transaction.readMetadata(unsignedTx);
