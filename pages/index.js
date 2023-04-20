@@ -1,6 +1,6 @@
 import { CardanoWallet, useWallet } from "@meshsdk/react";
 import { useState,useCallback  } from "react";
-import { UpToIPFS, signTransaction } from "../backend";
+import { UpToIPFS } from "../backend";
 import {
   ForgeScript,
   Transaction,
@@ -28,11 +28,11 @@ export default function mNFT() {
   const [formdata, setFormdata] = useState({
     assetName: "",
     file: null,
-    Credit: false
+    Credit: true
   });
   const [metadata, setMetadata] = useState({});
-  const [credit, setCredit] = useState({MintedBy:process.env.AUTHOR});
-  const [price, setPrice] = useState(0);
+  const [credit, setCredit] = useState({});
+  const [price, setPrice] = useState(1000000);
   const [network, setNetwork] = useState("");
   const [groups, setGroups] = useState([{id: '1', MDName: 'name', MDValue: ''},{id: '2', MDName: 'description', MDValue: ''}]);
 
@@ -110,7 +110,6 @@ export default function mNFT() {
         const forgingScript = ForgeScript.withOneSignature(recipientAddress);
         const tx = new Transaction({ initiator: wallet });
         tx.mintAsset(forgingScript, asset);
-        console.log(price)
         if(price >0 ){
           tx.sendLovelace(bankWalletAddress, `${price}`);
         }
@@ -132,19 +131,6 @@ export default function mNFT() {
 
   return (
     <>
-    <input type="checkbox" id="credit-modal" className="modal-toggle" />
-<div className="modal">
-  <div className="modal-box">
-    <h3 className="font-bold text-lg">What is Credit</h3>
-    <p className="py-4">if you disable this button, you will only need the minimum transaction fee (~0.2 ADA) and will get 1 NFT with 1 metadata field " MintedBy: {process.env.AUTHOR} ".
-otherwise you will incur 1 ADA + transaction fee and your NFT will no longer have credit</p>
-    <div className="modal-action">
-      <label htmlFor="credit-modal" className="btn">I understand</label>
-    </div>
-  </div>
-</div>
-
-
     <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -171,7 +157,10 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
                 Asset Name 
                 </label>
                 <input  type="text" name="assetName"  onChange={handleChange} value={formdata.assetName} placeholder="Asset Name"  className="input input-bordered input-success w-full" />
-              
+                
+                
+                <label className="label-text">Note: The name nft is used to distinguish it from other NFTs. Therefore, you are not set to be the same as another NFT.</label>
+
               </div>
                {/* html */}
               <div className="col-span-6 lg:col-span-8">
@@ -186,11 +175,11 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
             <div className="input-group">
             <button onClick={handleAddGroup} className="btn">Add metadata</button>           
               <label className="label cursor-pointer">
-                <span className="bg-transparent" >Remove Credit</span> 
+                <span className="bg-transparent" >Remove "MintedBy:..." in metadata</span> 
                 <input type="checkbox" name="Credit" onChange={handleChange} className="toggle toggle-success"  checked={formdata.Credit} />
-                <label htmlFor="credit-modal" className="mx-10">What is this ?</label>
-
               </label>
+              {price > 0 && (<button disabled className="bg-transparent mx-5">cost {price/1000000} ADA</button>)}
+                  
               </div>
             </div>
             </div>
@@ -230,7 +219,10 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
                 <Link href={`https://${network}cardanoscan.io/transaction/${txHash}`}>{txHash}</Link>
               </div>
             )}
+            
             </div>
+
+            
 
               
             </div>
