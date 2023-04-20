@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
+    AUTHOR: process.env.AUTHOR,
     MAINNET_ADDR: process.env.MAINNET_ADDR,
     PREPROD_ADDR: process.env.PREPROD_ADDR,
     PINATA_API_KEY: process.env.PINATA_API_KEY,
