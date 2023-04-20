@@ -134,7 +134,7 @@ export default function mNFT() {
 <div className="modal">
   <div className="modal-box">
     <h3 className="font-bold text-lg">What is Credit</h3>
-    <p className="py-4">if you disable this button, you will only need the minimum transaction fee (~0.2 ADA) and will get 1 NFT with 1 metadata field " MintedBy: {process.env.AUTHOR} ".
+    <p className="py-4">if you disable this button, you will only need the minimum transaction fee (~0.2 ADA) and will get 1 NFT with 1 metadata field " MintedBy: {process.env._AUTHOR} ".
 otherwise you will incur 1 ADA + transaction fee and your NFT will no longer have credit</p>
     <div className="modal-action">
       <label htmlFor="credit-modal" className="btn">I understand</label>
