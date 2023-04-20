@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <MeshProvider>
       <Head>
-        <title>Mint NFT in Cardano</title>
+        <title>Mint an Cardano NFT</title>
         <link rel="icon" type="image/png" href="/icon.png"/>
       </Head>
       <div className="container mx-auto">

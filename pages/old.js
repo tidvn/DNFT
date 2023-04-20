@@ -30,7 +30,7 @@ export default function mNFT() {
     Credit: false
   });
   const [metadata, setMetadata] = useState({});
-  const [credit, setCredit] = useState({MintedBy:"www.tdung.tech"});
+  const [credit, setCredit] = useState({MintedBy:process.env.AUTHOR});
   const [price, setPrice] = useState(0);
 
   const [groups, setGroups] = useState([{id: '1', MDName: 'name', MDValue: ''},{id: '2', MDName: 'description', MDValue: ''}]);
@@ -65,7 +65,7 @@ export default function mNFT() {
         setCredit({})
       }else{
         setPrice(0)
-        setCredit({MintedBy:"www.tdung.tech"})
+        setCredit({MintedBy:process.env.AUTHOR})
       }
     }
     else{
@@ -134,7 +134,7 @@ export default function mNFT() {
 <div className="modal">
   <div className="modal-box">
     <h3 className="font-bold text-lg">What is Credit</h3>
-    <p className="py-4">if you disable this button, you will only need the minimum transaction fee (~0.2 ADA) and will get 1 NFT with 1 metadata field " MintedBy: DNFT".
+    <p className="py-4">if you disable this button, you will only need the minimum transaction fee (~0.2 ADA) and will get 1 NFT with 1 metadata field " MintedBy: {process.env.AUTHOR} ".
 otherwise you will incur 1 ADA + transaction fee and your NFT will no longer have credit</p>
     <div className="modal-action">
       <label htmlFor="credit-modal" className="btn">I understand</label>
@@ -162,7 +162,7 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 lg:col-span-8">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                NFT Name
+                Asset Name 
                 </label>
                 <input type="text" name="assetName"  onChange={handleChange} value={formdata.assetName} placeholder="Asset Name"  className="input input-bordered input-success w-full" />
 

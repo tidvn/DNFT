@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'standalone',
   env: {
     AUTHOR: process.env.AUTHOR,
     MAINNET_ADDR: process.env.MAINNET_ADDR,

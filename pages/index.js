@@ -141,6 +141,8 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
     </div>
   </div>
 </div>
+
+
     <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -154,28 +156,29 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
             }}
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          
+        
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">          
           <div className="text-start">
           <div className="overflow-hidden shadow sm:rounded-md">
           <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 gap-6">
-              <div className="col-span-6 lg:col-span-8">
+              {/* html */}
+              <div className="col-span-6 lg:col-span-8" >
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                NFT Name
+                  
+                Asset Name 
                 </label>
-                <input type="text" name="assetName"  onChange={handleChange} value={formdata.assetName} placeholder="Asset Name"  className="input input-bordered input-success w-full" />
-
+                <input  type="text" name="assetName"  onChange={handleChange} value={formdata.assetName} placeholder="Asset Name"  className="input input-bordered input-success w-full" />
+              
               </div>
+               {/* html */}
               <div className="col-span-6 lg:col-span-8">
                 <label htmlFor="Amount" className="block text-sm font-medium text-gray-700">
                 Image
                 </label>
                 <input type="file" name="file" onChange={handleChange} className="file-input file-input-bordered file-input-accent w-full" />
               </div>
-            </div>
-            <div className="grid grid-cols-6 gap-6">
-              <label></label>
+               {/* html */}
             <div className="col-span-6 lg:col-span-8">
             <div className="form-control">
             <div className="input-group">
@@ -189,7 +192,7 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
               </div>
             </div>
             </div>
-           
+            
             {groups.map(group => (
               <GroupInput
                 key={group.id}
@@ -200,13 +203,9 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
                 onRemove={handleRemoveGroup}
               />
             ))}
-            </div>
-         
-              
-          </div>
-          
-          <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-              {connected ? (
+             
+             <div className="col-span-6 lg:col-span-8" >
+            {connected ? (
               <button  className="flex items-center justify-center
               font-semibold text-lg
               bg-green-500
@@ -229,14 +228,16 @@ otherwise you will incur 1 ADA + transaction fee and your NFT will no longer hav
                 <code>{txHash}</code>
               </div>
             )}
+            </div>
+            </div>
             
-          </div>
+            
+            </div>
+            </div>
+            </div>
         </div>
-            
-            
-          </div>
-        </div>
-        <div
+        
+         <div
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"
         >

@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  mintnft:
+    build: .
+    environment:
+    - AUTHOR="www.tdung.tech"
+    - MAINNET_ADDR="addr1q8eme7xajm47jus9q3k0qdajjdk53mqxtssyrdn96l89m2qf27gt6zfw2jtmfqc7x99jp3mywtl77mvjtz89jxk34wpsuxll6z"
+    - PREPROD_ADDR="addr_test1qqpht5yzcant2qzwmusxqzx55ree439pzrzx9v45rvpp0neycp5cajqdfk55prktftypm6r9wu0usnfrjdu8qwpgcsqsy9j2du"
+    - PINATA_API_KEY="1acfb70a66acadebb502"
+    - PINATA_SECRET_API_KEY="12dfc3782fd24a25eeead27e8fa559b66416c63ff0e852d476b5802fee3bb924"
+    ports:
+      - "80:3025"
