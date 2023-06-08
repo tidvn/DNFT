@@ -5,6 +5,10 @@
 - You control your Policy ID of your assests (NFT/Token)
 - Very low fee compare to other applications
 - Open Source :) You could clone our application and contribute more features. we are happy to support
+## Sample site:
+We run a sample site at  http://nft.easterntownhall.com:8088/ 
+You can mint NFT on Mainnet/Prepod directly from this site
+
 # How to run the container:
 ## Syntax:
 ``` bash
@@ -19,5 +23,5 @@ sudo docker run -d -t -i -e AUTHOR='cardano2vn.io' \
 ## If you need support:
 Please contact Dung or Tien at https://t.me/cardano2vn 
 
-## Acknowledgement
+# Acknowledgement
 Thank https://meshjs.dev/ for your browser wallet module. 
